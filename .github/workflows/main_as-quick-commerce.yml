@@ -25,11 +25,13 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test
 
+      # Upload ONLY the main jar (exclude -plain.jar)
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: build/libs/*.jar
+          path: build/libs/*-SNAPSHOT.jar
+          if-no-files-found: error
 
   deploy:
     runs-on: ubuntu-latest
@@ -42,13 +44,17 @@ jobs:
           name: java-app
           path: .
 
+      # Remove plain jar if exists
+      - name: Remove plain jar
+        run: rm -f *-plain.jar
+
+      # Rename main jar to app.jar (Azure expects this)
+      - name: Rename jar to app.jar
+        run: mv *-SNAPSHOT.jar app.jar
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: as-quick-commerce
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: '*-SNAPSHOT.jar'
-
-
-
-
+          package: app.jar
