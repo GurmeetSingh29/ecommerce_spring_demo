@@ -9,11 +9,13 @@ public class PageController {
 
     @GetMapping("/home")
     public String home(Model model){
-       /* String blobImageUrl =
-                "https://quickecommerce01stn.blob.core.windows.net/quick-commerce-stoage-container/product-image/Passport_size_picture.png";*/
+        String blobImageUrl =
+                "https://quickecommerce01stn.blob.core.windows.net/quick-commerce-stoage-container/product-image/Passport_size_picture.png";
     //    String blobImageUrl =  "https://quickecommerce01stn.blob.core.windows.net/quick-commerce-stoage-container/product-image/Passport_size_picture.png?sp=r&st=2026-02-01T08:13:35Z&se=2026-02-03T16:28:35Z&spr=https&sv=2024-11-04&sr=b&sig=BzlfuJw5zIl1gxp%2BIS%2BnwGyGOwsZd1FdwJAw37tmMek%3D";
 
-        model.addAttribute("imageUrl", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Example.jpg/320px-Example.jpg");
+       // String staticUrl = "https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg";
+
+        model.addAttribute("imageUrl", blobImageUrl);
         return "home";
     }
 

@@ -1,13 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Azure Blob Image</title>
+    <title>Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            margin: 80px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        img {
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: green;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #2a5298;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1e3c72;
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Product Image from Azure Blob Storage</h2>
+<div class="container">
+    <h2>Product from Azure Blob Storage</h2>
 
-<img th:src="${imageUrl}" alt="Product Image" width="250"/>
+    <img th:src="${imageUrl}" alt="Product Image" width="200"/>
+
+    <div class="product-name">Passport Size Photo</div>
+
+</div>
 
 </body>
 </html>
